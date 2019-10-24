@@ -1,0 +1,39 @@
+server:
+  port: 9094
+
+eureka:
+  instance:
+    hostname: localhost
+    port: 9091
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 3000
+
+spring:
+    datasource:
+        driver-class-name: org.mariadb.jdbc.Driver
+        password: root
+        platform: mariadb
+        url: jdbc:mariadb://localhost:3306/delivery-order?createDatabaseIfNotExist=true&verifyServerCertificate=false&useSSL=false&requireSSL=false
+        username: root
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+
+authserver:
+  hostname: http://localhost:9092
+security:
+  oauth2:
+    resource:
+      userInfoUri: ${authserver.hostname}/user
+      id: payments
+
+
+
