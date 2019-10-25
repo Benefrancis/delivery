@@ -1,0 +1,3 @@
+mpf:
+  maxInstances: 10
+  minInstances: 1
