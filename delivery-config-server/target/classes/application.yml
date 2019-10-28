@@ -6,4 +6,4 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Benefrancis/delivery-configs
+          uri: https://github.com/Benefrancis/delivery

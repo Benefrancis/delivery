@@ -1,6 +1,6 @@
 spring:
   application:
-    name: delivery-eureka-server
+    name: mpf_eureka_service_registry
   cloud:
     config:
       uri: http://localhost:9090
