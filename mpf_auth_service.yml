@@ -1,0 +1,46 @@
+server:
+  port: 9092
+
+eureka:
+  instance:
+    hostname: localhost
+    port: 9091
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 20000
+
+security:
+    oauth2:
+        client:
+            access-token-validity-seconds: 1800
+            authorized-grant-types: password,refresh_token
+            client-id: coderef
+            client-secret: $2a$10$p9Pk0fQNAQSesI4vuvKA0OZanDD2
+            resource-ids: resources
+            scope: read,write
+spring:
+    datasource:
+        data: classpath:/sql/data.sql
+        driver-class-name: org.mariadb.jdbc.Driver
+        password: root
+        platform: mariadb
+        schema: classpath:/sql/schema.sql
+        url: jdbc:mariadb://localhost:3306/mpf-oauth?createDatabaseIfNotExist=true&verifyServerCertificate=false&useSSL=false&requireSSL=false
+        username: root
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        open-in-view: false
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+        show-sql: true
+
+# #Configurações do LDAP da PGR
+# spring:
+#  ldap:
+#   urls: ldap://ldap.pgr.mpf.mp.br
+#   base: o=mpf
